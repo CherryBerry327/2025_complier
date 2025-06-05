@@ -1,0 +1,906 @@
+Terminals unused in grammar
+
+   START
+   END
+   ID2
+
+
+State 12 conflicts: 6 shift/reduce
+
+
+Grammar
+
+    0 $accept: program $end
+
+    1 program: functions
+
+    2 functions: functions function
+    3          | function
+
+    4 function: fun_header fun_body
+
+    5 fun_header: MAIN '(' ')'
+
+    6 fun_body: '{' dcl_list stmt_list '}'
+
+    7 dcl_list: dcl_list dcl
+    8         | dcl
+
+    9 stmt_list: stmt_list stmt
+   10          | stmt
+   11          | error STMTEND
+
+   12 stmt: expr_stmt
+   13     | if_stmt
+   14     | compound_stmt
+
+   15 compound_stmt: '{' stmt_list '}'
+   16              | '{' '}'
+
+   17 if_stmt: IF '(' logical_expr ')' stmt
+   18        | IF '(' logical_expr ')' stmt ELSE stmt
+
+   19 expr_stmt: logical_expr STMTEND
+   20          | ID ASSGN logical_expr STMTEND
+
+   21 logical_expr: additive_expr
+   22             | logical_expr GT additive_expr
+   23             | logical_expr LT additive_expr
+   24             | logical_expr EQ additive_expr
+   25             | logical_expr NE additive_expr
+   26             | logical_expr GE additive_expr
+   27             | logical_expr LE additive_expr
+
+   28 additive_expr: additive_expr ADD multiplicative_expr
+   29              | additive_expr SUB multiplicative_expr
+   30              | multiplicative_expr
+
+   31 multiplicative_expr: multiplicative_expr MUL primary_expr
+   32                    | multiplicative_expr DIV primary_expr
+   33                    | primary_expr
+
+   34 primary_expr: ID
+   35             | NUM
+   36             | '(' additive_expr ')'
+
+   37 dcl: /* empty */
+
+
+Terminals, with rules where they appear
+
+$end (0) 0
+'(' (40) 5 17 18 36
+')' (41) 5 17 18 36
+'{' (123) 6 15 16
+'}' (125) 6 15 16
+error (256) 11
+MAIN (258) 5
+ADD (259) 28
+SUB (260) 29
+ASSGN (261) 20
+ID (262) 20 34
+NUM (263) 35
+STMTEND (264) 11 19 20
+START (265)
+END (266)
+ID2 (267)
+MUL (268) 31
+DIV (269) 32
+IF (270) 17 18
+ELSE (271) 18
+GT (272) 22
+LT (273) 23
+EQ (274) 24
+NE (275) 25
+GE (276) 26
+LE (277) 27
+IFX (278)
+
+
+Nonterminals, with rules where they appear
+
+$accept (28)
+    on left: 0
+program (29)
+    on left: 1, on right: 0
+functions (30)
+    on left: 2 3, on right: 1 2
+function (31)
+    on left: 4, on right: 2 3
+fun_header (32)
+    on left: 5, on right: 4
+fun_body (33)
+    on left: 6, on right: 4
+dcl_list (34)
+    on left: 7 8, on right: 6 7
+stmt_list (35)
+    on left: 9 10 11, on right: 6 9 15
+stmt (36)
+    on left: 12 13 14, on right: 9 10 17 18
+compound_stmt (37)
+    on left: 15 16, on right: 14
+if_stmt (38)
+    on left: 17 18, on right: 13
+expr_stmt (39)
+    on left: 19 20, on right: 12
+logical_expr (40)
+    on left: 21 22 23 24 25 26 27, on right: 17 18 19 20 22 23 24 25
+    26 27
+additive_expr (41)
+    on left: 28 29 30, on right: 21 22 23 24 25 26 27 28 29 36
+multiplicative_expr (42)
+    on left: 31 32 33, on right: 28 29 30 31 32
+primary_expr (43)
+    on left: 34 35 36, on right: 31 32 33
+dcl (44)
+    on left: 37, on right: 7 8
+
+
+State 0
+
+    0 $accept: . program $end
+
+    MAIN  shift, and go to state 1
+
+    program     go to state 2
+    functions   go to state 3
+    function    go to state 4
+    fun_header  go to state 5
+
+
+State 1
+
+    5 fun_header: MAIN . '(' ')'
+
+    '('  shift, and go to state 6
+
+
+State 2
+
+    0 $accept: program . $end
+
+    $end  shift, and go to state 7
+
+
+State 3
+
+    1 program: functions .
+    2 functions: functions . function
+
+    MAIN  shift, and go to state 1
+
+    $default  reduce using rule 1 (program)
+
+    function    go to state 8
+    fun_header  go to state 5
+
+
+State 4
+
+    3 functions: function .
+
+    $default  reduce using rule 3 (functions)
+
+
+State 5
+
+    4 function: fun_header . fun_body
+
+    '{'  shift, and go to state 9
+
+    fun_body  go to state 10
+
+
+State 6
+
+    5 fun_header: MAIN '(' . ')'
+
+    ')'  shift, and go to state 11
+
+
+State 7
+
+    0 $accept: program $end .
+
+    $default  accept
+
+
+State 8
+
+    2 functions: functions function .
+
+    $default  reduce using rule 2 (functions)
+
+
+State 9
+
+    6 fun_body: '{' . dcl_list stmt_list '}'
+
+    $default  reduce using rule 37 (dcl)
+
+    dcl_list  go to state 12
+    dcl       go to state 13
+
+
+State 10
+
+    4 function: fun_header fun_body .
+
+    $default  reduce using rule 4 (function)
+
+
+State 11
+
+    5 fun_header: MAIN '(' ')' .
+
+    $default  reduce using rule 5 (fun_header)
+
+
+State 12
+
+    6 fun_body: '{' dcl_list . stmt_list '}'
+    7 dcl_list: dcl_list . dcl
+
+    error  shift, and go to state 14
+    ID     shift, and go to state 15
+    NUM    shift, and go to state 16
+    IF     shift, and go to state 17
+    '('    shift, and go to state 18
+    '{'    shift, and go to state 19
+
+    error  [reduce using rule 37 (dcl)]
+    ID     [reduce using rule 37 (dcl)]
+    NUM    [reduce using rule 37 (dcl)]
+    IF     [reduce using rule 37 (dcl)]
+    '('    [reduce using rule 37 (dcl)]
+    '{'    [reduce using rule 37 (dcl)]
+
+    stmt_list            go to state 20
+    stmt                 go to state 21
+    compound_stmt        go to state 22
+    if_stmt              go to state 23
+    expr_stmt            go to state 24
+    logical_expr         go to state 25
+    additive_expr        go to state 26
+    multiplicative_expr  go to state 27
+    primary_expr         go to state 28
+    dcl                  go to state 29
+
+
+State 13
+
+    8 dcl_list: dcl .
+
+    $default  reduce using rule 8 (dcl_list)
+
+
+State 14
+
+   11 stmt_list: error . STMTEND
+
+    STMTEND  shift, and go to state 30
+
+
+State 15
+
+   20 expr_stmt: ID . ASSGN logical_expr STMTEND
+   34 primary_expr: ID .
+
+    ASSGN  shift, and go to state 31
+
+    $default  reduce using rule 34 (primary_expr)
+
+
+State 16
+
+   35 primary_expr: NUM .
+
+    $default  reduce using rule 35 (primary_expr)
+
+
+State 17
+
+   17 if_stmt: IF . '(' logical_expr ')' stmt
+   18        | IF . '(' logical_expr ')' stmt ELSE stmt
+
+    '('  shift, and go to state 32
+
+
+State 18
+
+   36 primary_expr: '(' . additive_expr ')'
+
+    ID   shift, and go to state 33
+    NUM  shift, and go to state 16
+    '('  shift, and go to state 18
+
+    additive_expr        go to state 34
+    multiplicative_expr  go to state 27
+    primary_expr         go to state 28
+
+
+State 19
+
+   15 compound_stmt: '{' . stmt_list '}'
+   16              | '{' . '}'
+
+    error  shift, and go to state 14
+    ID     shift, and go to state 15
+    NUM    shift, and go to state 16
+    IF     shift, and go to state 17
+    '('    shift, and go to state 18
+    '{'    shift, and go to state 19
+    '}'    shift, and go to state 35
+
+    stmt_list            go to state 36
+    stmt                 go to state 21
+    compound_stmt        go to state 22
+    if_stmt              go to state 23
+    expr_stmt            go to state 24
+    logical_expr         go to state 25
+    additive_expr        go to state 26
+    multiplicative_expr  go to state 27
+    primary_expr         go to state 28
+
+
+State 20
+
+    6 fun_body: '{' dcl_list stmt_list . '}'
+    9 stmt_list: stmt_list . stmt
+
+    ID   shift, and go to state 15
+    NUM  shift, and go to state 16
+    IF   shift, and go to state 17
+    '('  shift, and go to state 18
+    '{'  shift, and go to state 19
+    '}'  shift, and go to state 37
+
+    stmt                 go to state 38
+    compound_stmt        go to state 22
+    if_stmt              go to state 23
+    expr_stmt            go to state 24
+    logical_expr         go to state 25
+    additive_expr        go to state 26
+    multiplicative_expr  go to state 27
+    primary_expr         go to state 28
+
+
+State 21
+
+   10 stmt_list: stmt .
+
+    $default  reduce using rule 10 (stmt_list)
+
+
+State 22
+
+   14 stmt: compound_stmt .
+
+    $default  reduce using rule 14 (stmt)
+
+
+State 23
+
+   13 stmt: if_stmt .
+
+    $default  reduce using rule 13 (stmt)
+
+
+State 24
+
+   12 stmt: expr_stmt .
+
+    $default  reduce using rule 12 (stmt)
+
+
+State 25
+
+   19 expr_stmt: logical_expr . STMTEND
+   22 logical_expr: logical_expr . GT additive_expr
+   23             | logical_expr . LT additive_expr
+   24             | logical_expr . EQ additive_expr
+   25             | logical_expr . NE additive_expr
+   26             | logical_expr . GE additive_expr
+   27             | logical_expr . LE additive_expr
+
+    STMTEND  shift, and go to state 39
+    GT       shift, and go to state 40
+    LT       shift, and go to state 41
+    EQ       shift, and go to state 42
+    NE       shift, and go to state 43
+    GE       shift, and go to state 44
+    LE       shift, and go to state 45
+
+
+State 26
+
+   21 logical_expr: additive_expr .
+   28 additive_expr: additive_expr . ADD multiplicative_expr
+   29              | additive_expr . SUB multiplicative_expr
+
+    ADD  shift, and go to state 46
+    SUB  shift, and go to state 47
+
+    $default  reduce using rule 21 (logical_expr)
+
+
+State 27
+
+   30 additive_expr: multiplicative_expr .
+   31 multiplicative_expr: multiplicative_expr . MUL primary_expr
+   32                    | multiplicative_expr . DIV primary_expr
+
+    MUL  shift, and go to state 48
+    DIV  shift, and go to state 49
+
+    $default  reduce using rule 30 (additive_expr)
+
+
+State 28
+
+   33 multiplicative_expr: primary_expr .
+
+    $default  reduce using rule 33 (multiplicative_expr)
+
+
+State 29
+
+    7 dcl_list: dcl_list dcl .
+
+    $default  reduce using rule 7 (dcl_list)
+
+
+State 30
+
+   11 stmt_list: error STMTEND .
+
+    $default  reduce using rule 11 (stmt_list)
+
+
+State 31
+
+   20 expr_stmt: ID ASSGN . logical_expr STMTEND
+
+    ID   shift, and go to state 33
+    NUM  shift, and go to state 16
+    '('  shift, and go to state 18
+
+    logical_expr         go to state 50
+    additive_expr        go to state 26
+    multiplicative_expr  go to state 27
+    primary_expr         go to state 28
+
+
+State 32
+
+   17 if_stmt: IF '(' . logical_expr ')' stmt
+   18        | IF '(' . logical_expr ')' stmt ELSE stmt
+
+    ID   shift, and go to state 33
+    NUM  shift, and go to state 16
+    '('  shift, and go to state 18
+
+    logical_expr         go to state 51
+    additive_expr        go to state 26
+    multiplicative_expr  go to state 27
+    primary_expr         go to state 28
+
+
+State 33
+
+   34 primary_expr: ID .
+
+    $default  reduce using rule 34 (primary_expr)
+
+
+State 34
+
+   28 additive_expr: additive_expr . ADD multiplicative_expr
+   29              | additive_expr . SUB multiplicative_expr
+   36 primary_expr: '(' additive_expr . ')'
+
+    ADD  shift, and go to state 46
+    SUB  shift, and go to state 47
+    ')'  shift, and go to state 52
+
+
+State 35
+
+   16 compound_stmt: '{' '}' .
+
+    $default  reduce using rule 16 (compound_stmt)
+
+
+State 36
+
+    9 stmt_list: stmt_list . stmt
+   15 compound_stmt: '{' stmt_list . '}'
+
+    ID   shift, and go to state 15
+    NUM  shift, and go to state 16
+    IF   shift, and go to state 17
+    '('  shift, and go to state 18
+    '{'  shift, and go to state 19
+    '}'  shift, and go to state 53
+
+    stmt                 go to state 38
+    compound_stmt        go to state 22
+    if_stmt              go to state 23
+    expr_stmt            go to state 24
+    logical_expr         go to state 25
+    additive_expr        go to state 26
+    multiplicative_expr  go to state 27
+    primary_expr         go to state 28
+
+
+State 37
+
+    6 fun_body: '{' dcl_list stmt_list '}' .
+
+    $default  reduce using rule 6 (fun_body)
+
+
+State 38
+
+    9 stmt_list: stmt_list stmt .
+
+    $default  reduce using rule 9 (stmt_list)
+
+
+State 39
+
+   19 expr_stmt: logical_expr STMTEND .
+
+    $default  reduce using rule 19 (expr_stmt)
+
+
+State 40
+
+   22 logical_expr: logical_expr GT . additive_expr
+
+    ID   shift, and go to state 33
+    NUM  shift, and go to state 16
+    '('  shift, and go to state 18
+
+    additive_expr        go to state 54
+    multiplicative_expr  go to state 27
+    primary_expr         go to state 28
+
+
+State 41
+
+   23 logical_expr: logical_expr LT . additive_expr
+
+    ID   shift, and go to state 33
+    NUM  shift, and go to state 16
+    '('  shift, and go to state 18
+
+    additive_expr        go to state 55
+    multiplicative_expr  go to state 27
+    primary_expr         go to state 28
+
+
+State 42
+
+   24 logical_expr: logical_expr EQ . additive_expr
+
+    ID   shift, and go to state 33
+    NUM  shift, and go to state 16
+    '('  shift, and go to state 18
+
+    additive_expr        go to state 56
+    multiplicative_expr  go to state 27
+    primary_expr         go to state 28
+
+
+State 43
+
+   25 logical_expr: logical_expr NE . additive_expr
+
+    ID   shift, and go to state 33
+    NUM  shift, and go to state 16
+    '('  shift, and go to state 18
+
+    additive_expr        go to state 57
+    multiplicative_expr  go to state 27
+    primary_expr         go to state 28
+
+
+State 44
+
+   26 logical_expr: logical_expr GE . additive_expr
+
+    ID   shift, and go to state 33
+    NUM  shift, and go to state 16
+    '('  shift, and go to state 18
+
+    additive_expr        go to state 58
+    multiplicative_expr  go to state 27
+    primary_expr         go to state 28
+
+
+State 45
+
+   27 logical_expr: logical_expr LE . additive_expr
+
+    ID   shift, and go to state 33
+    NUM  shift, and go to state 16
+    '('  shift, and go to state 18
+
+    additive_expr        go to state 59
+    multiplicative_expr  go to state 27
+    primary_expr         go to state 28
+
+
+State 46
+
+   28 additive_expr: additive_expr ADD . multiplicative_expr
+
+    ID   shift, and go to state 33
+    NUM  shift, and go to state 16
+    '('  shift, and go to state 18
+
+    multiplicative_expr  go to state 60
+    primary_expr         go to state 28
+
+
+State 47
+
+   29 additive_expr: additive_expr SUB . multiplicative_expr
+
+    ID   shift, and go to state 33
+    NUM  shift, and go to state 16
+    '('  shift, and go to state 18
+
+    multiplicative_expr  go to state 61
+    primary_expr         go to state 28
+
+
+State 48
+
+   31 multiplicative_expr: multiplicative_expr MUL . primary_expr
+
+    ID   shift, and go to state 33
+    NUM  shift, and go to state 16
+    '('  shift, and go to state 18
+
+    primary_expr  go to state 62
+
+
+State 49
+
+   32 multiplicative_expr: multiplicative_expr DIV . primary_expr
+
+    ID   shift, and go to state 33
+    NUM  shift, and go to state 16
+    '('  shift, and go to state 18
+
+    primary_expr  go to state 63
+
+
+State 50
+
+   20 expr_stmt: ID ASSGN logical_expr . STMTEND
+   22 logical_expr: logical_expr . GT additive_expr
+   23             | logical_expr . LT additive_expr
+   24             | logical_expr . EQ additive_expr
+   25             | logical_expr . NE additive_expr
+   26             | logical_expr . GE additive_expr
+   27             | logical_expr . LE additive_expr
+
+    STMTEND  shift, and go to state 64
+    GT       shift, and go to state 40
+    LT       shift, and go to state 41
+    EQ       shift, and go to state 42
+    NE       shift, and go to state 43
+    GE       shift, and go to state 44
+    LE       shift, and go to state 45
+
+
+State 51
+
+   17 if_stmt: IF '(' logical_expr . ')' stmt
+   18        | IF '(' logical_expr . ')' stmt ELSE stmt
+   22 logical_expr: logical_expr . GT additive_expr
+   23             | logical_expr . LT additive_expr
+   24             | logical_expr . EQ additive_expr
+   25             | logical_expr . NE additive_expr
+   26             | logical_expr . GE additive_expr
+   27             | logical_expr . LE additive_expr
+
+    GT   shift, and go to state 40
+    LT   shift, and go to state 41
+    EQ   shift, and go to state 42
+    NE   shift, and go to state 43
+    GE   shift, and go to state 44
+    LE   shift, and go to state 45
+    ')'  shift, and go to state 65
+
+
+State 52
+
+   36 primary_expr: '(' additive_expr ')' .
+
+    $default  reduce using rule 36 (primary_expr)
+
+
+State 53
+
+   15 compound_stmt: '{' stmt_list '}' .
+
+    $default  reduce using rule 15 (compound_stmt)
+
+
+State 54
+
+   22 logical_expr: logical_expr GT additive_expr .
+   28 additive_expr: additive_expr . ADD multiplicative_expr
+   29              | additive_expr . SUB multiplicative_expr
+
+    ADD  shift, and go to state 46
+    SUB  shift, and go to state 47
+
+    $default  reduce using rule 22 (logical_expr)
+
+
+State 55
+
+   23 logical_expr: logical_expr LT additive_expr .
+   28 additive_expr: additive_expr . ADD multiplicative_expr
+   29              | additive_expr . SUB multiplicative_expr
+
+    ADD  shift, and go to state 46
+    SUB  shift, and go to state 47
+
+    $default  reduce using rule 23 (logical_expr)
+
+
+State 56
+
+   24 logical_expr: logical_expr EQ additive_expr .
+   28 additive_expr: additive_expr . ADD multiplicative_expr
+   29              | additive_expr . SUB multiplicative_expr
+
+    ADD  shift, and go to state 46
+    SUB  shift, and go to state 47
+
+    $default  reduce using rule 24 (logical_expr)
+
+
+State 57
+
+   25 logical_expr: logical_expr NE additive_expr .
+   28 additive_expr: additive_expr . ADD multiplicative_expr
+   29              | additive_expr . SUB multiplicative_expr
+
+    ADD  shift, and go to state 46
+    SUB  shift, and go to state 47
+
+    $default  reduce using rule 25 (logical_expr)
+
+
+State 58
+
+   26 logical_expr: logical_expr GE additive_expr .
+   28 additive_expr: additive_expr . ADD multiplicative_expr
+   29              | additive_expr . SUB multiplicative_expr
+
+    ADD  shift, and go to state 46
+    SUB  shift, and go to state 47
+
+    $default  reduce using rule 26 (logical_expr)
+
+
+State 59
+
+   27 logical_expr: logical_expr LE additive_expr .
+   28 additive_expr: additive_expr . ADD multiplicative_expr
+   29              | additive_expr . SUB multiplicative_expr
+
+    ADD  shift, and go to state 46
+    SUB  shift, and go to state 47
+
+    $default  reduce using rule 27 (logical_expr)
+
+
+State 60
+
+   28 additive_expr: additive_expr ADD multiplicative_expr .
+   31 multiplicative_expr: multiplicative_expr . MUL primary_expr
+   32                    | multiplicative_expr . DIV primary_expr
+
+    MUL  shift, and go to state 48
+    DIV  shift, and go to state 49
+
+    $default  reduce using rule 28 (additive_expr)
+
+
+State 61
+
+   29 additive_expr: additive_expr SUB multiplicative_expr .
+   31 multiplicative_expr: multiplicative_expr . MUL primary_expr
+   32                    | multiplicative_expr . DIV primary_expr
+
+    MUL  shift, and go to state 48
+    DIV  shift, and go to state 49
+
+    $default  reduce using rule 29 (additive_expr)
+
+
+State 62
+
+   31 multiplicative_expr: multiplicative_expr MUL primary_expr .
+
+    $default  reduce using rule 31 (multiplicative_expr)
+
+
+State 63
+
+   32 multiplicative_expr: multiplicative_expr DIV primary_expr .
+
+    $default  reduce using rule 32 (multiplicative_expr)
+
+
+State 64
+
+   20 expr_stmt: ID ASSGN logical_expr STMTEND .
+
+    $default  reduce using rule 20 (expr_stmt)
+
+
+State 65
+
+   17 if_stmt: IF '(' logical_expr ')' . stmt
+   18        | IF '(' logical_expr ')' . stmt ELSE stmt
+
+    ID   shift, and go to state 15
+    NUM  shift, and go to state 16
+    IF   shift, and go to state 17
+    '('  shift, and go to state 18
+    '{'  shift, and go to state 19
+
+    stmt                 go to state 66
+    compound_stmt        go to state 22
+    if_stmt              go to state 23
+    expr_stmt            go to state 24
+    logical_expr         go to state 25
+    additive_expr        go to state 26
+    multiplicative_expr  go to state 27
+    primary_expr         go to state 28
+
+
+State 66
+
+   17 if_stmt: IF '(' logical_expr ')' stmt .
+   18        | IF '(' logical_expr ')' stmt . ELSE stmt
+
+    ELSE  shift, and go to state 67
+
+    $default  reduce using rule 17 (if_stmt)
+
+
+State 67
+
+   18 if_stmt: IF '(' logical_expr ')' stmt ELSE . stmt
+
+    ID   shift, and go to state 15
+    NUM  shift, and go to state 16
+    IF   shift, and go to state 17
+    '('  shift, and go to state 18
+    '{'  shift, and go to state 19
+
+    stmt                 go to state 68
+    compound_stmt        go to state 22
+    if_stmt              go to state 23
+    expr_stmt            go to state 24
+    logical_expr         go to state 25
+    additive_expr        go to state 26
+    multiplicative_expr  go to state 27
+    primary_expr         go to state 28
+
+
+State 68
+
+   18 if_stmt: IF '(' logical_expr ')' stmt ELSE stmt .
+
+    $default  reduce using rule 18 (if_stmt)

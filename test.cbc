@@ -1,0 +1,61 @@
+main() {
+  vala = 10;
+  valb = 20;
+  valc = 10;
+
+  resgt = 0;
+  reslt = 0;
+  reseqone = 0;
+  reseqtwo = 0;
+  resneone = 0;
+  resnetwo = 0;
+  resgeone = 0;
+  resgetwo = 0;
+  resgethree = 0;
+  resleone = 0;
+  resletwo = 0;
+  reslethree = 0;
+
+  tempval = 100;
+  reseqifelsetrue = 0;
+  reseqifelsefalse = 0;
+
+  numseven = 7;
+  numthree = 3;
+  restruncate = 0;
+
+  if (valb > vala) {
+    resgt = 1;
+  }
+
+  if (vala > valb) {
+    tempval = 200;
+  }
+
+  if (vala == valc) {
+    reseqifelsetrue = 1;
+  } else {
+    reseqifelsetrue = 2;
+  }
+
+  if (vala == valb) {
+    reseqifelsefalse = 1;
+  } else {
+    reseqifelsefalse = 2;
+  }
+
+  if (vala < valb) { reslt = 1; }
+  if (vala == valc) { reseqone = 1; }
+  if (vala != valb) { resneone = 1; }
+  if (vala >= valc) { resgeone = 1; }
+  if (valb >= vala) { resgetwo = 1; }
+  if (vala <= valc) { resleone = 1; }
+  if (vala <= valb) { resletwo = 1; }
+
+  if (vala == valb) { reseqtwo = 99; }
+  if (vala != valc) { resnetwo = 99; }
+  if (vala >= valb) { resgethree = 99; }
+  if (valb <= vala) { reslethree = 99; }
+
+  restruncate = numseven / numthree;
+}

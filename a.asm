@@ -1,0 +1,318 @@
+LVALUE vala
+PUSH 10
+:=
+LVALUE valb
+PUSH 20
+:=
+LVALUE valc
+PUSH 10
+:=
+LVALUE resgt
+PUSH 0
+:=
+LVALUE reslt
+PUSH 0
+:=
+LVALUE reseqone
+PUSH 0
+:=
+LVALUE reseqtwo
+PUSH 0
+:=
+LVALUE resneone
+PUSH 0
+:=
+LVALUE resnetwo
+PUSH 0
+:=
+LVALUE resgeone
+PUSH 0
+:=
+LVALUE resgetwo
+PUSH 0
+:=
+LVALUE resgethree
+PUSH 0
+:=
+LVALUE resleone
+PUSH 0
+:=
+LVALUE resletwo
+PUSH 0
+:=
+LVALUE reslethree
+PUSH 0
+:=
+LVALUE tempval
+PUSH 100
+:=
+LVALUE reseqifelsetrue
+PUSH 0
+:=
+LVALUE reseqifelsefalse
+PUSH 0
+:=
+LVALUE numseven
+PUSH 7
+:=
+LVALUE numthree
+PUSH 3
+:=
+LVALUE restruncate
+PUSH 0
+:=
+RVALUE valb
+RVALUE vala
+-
+GOPLUS L2
+PUSH 0
+GOTO L3
+LABEL L2
+PUSH 1
+LABEL L3
+GOFALSE L1
+LVALUE resgt
+PUSH 1
+:=
+LABEL L1
+RVALUE vala
+RVALUE valb
+-
+GOPLUS L6
+PUSH 0
+GOTO L7
+LABEL L6
+PUSH 1
+LABEL L7
+GOFALSE L5
+LVALUE tempval
+PUSH 200
+:=
+LABEL L5
+RVALUE vala
+RVALUE valc
+-
+GOFALSE L10
+PUSH 0
+GOTO L11
+LABEL L10
+PUSH 1
+LABEL L11
+GOFALSE L8
+LVALUE reseqifelsetrue
+PUSH 1
+:=
+LVALUE reseqifelsetrue
+PUSH 2
+:=
+GOTO L9
+LABEL L8
+LVALUE reseqifelsetrue
+PUSH 2
+:=
+LABEL L9
+RVALUE vala
+RVALUE valb
+-
+GOFALSE L14
+PUSH 0
+GOTO L15
+LABEL L14
+PUSH 1
+LABEL L15
+GOFALSE L12
+LVALUE reseqifelsefalse
+PUSH 1
+:=
+LVALUE reseqifelsefalse
+PUSH 2
+:=
+GOTO L13
+LABEL L12
+LVALUE reseqifelsefalse
+PUSH 2
+:=
+LABEL L13
+RVALUE vala
+RVALUE valb
+-
+GOMINUS L18
+PUSH 0
+GOTO L19
+LABEL L18
+PUSH 1
+LABEL L19
+GOFALSE L17
+LVALUE reslt
+PUSH 1
+:=
+LABEL L17
+RVALUE vala
+RVALUE valc
+-
+GOFALSE L22
+PUSH 0
+GOTO L23
+LABEL L22
+PUSH 1
+LABEL L23
+GOFALSE L21
+LVALUE reseqone
+PUSH 1
+:=
+LABEL L21
+RVALUE vala
+RVALUE valb
+-
+GOTRUE L26
+PUSH 0
+GOTO L27
+LABEL L26
+PUSH 1
+LABEL L27
+GOFALSE L25
+LVALUE resneone
+PUSH 1
+:=
+LABEL L25
+RVALUE vala
+RVALUE valc
+-
+GOMINUS L32
+PUSH 1
+GOTO L31
+LABEL L32
+PUSH 0
+LABEL L31
+GOFALSE L29
+LVALUE resgeone
+PUSH 1
+:=
+LABEL L29
+RVALUE valb
+RVALUE vala
+-
+GOMINUS L37
+PUSH 1
+GOTO L36
+LABEL L37
+PUSH 0
+LABEL L36
+GOFALSE L34
+LVALUE resgetwo
+PUSH 1
+:=
+LABEL L34
+RVALUE vala
+RVALUE valc
+-
+GOPLUS L42
+PUSH 1
+GOTO L41
+LABEL L42
+PUSH 0
+LABEL L41
+GOFALSE L39
+LVALUE resleone
+PUSH 1
+:=
+LABEL L39
+RVALUE vala
+RVALUE valb
+-
+GOPLUS L47
+PUSH 1
+GOTO L46
+LABEL L47
+PUSH 0
+LABEL L46
+GOFALSE L44
+LVALUE resletwo
+PUSH 1
+:=
+LABEL L44
+RVALUE vala
+RVALUE valb
+-
+GOFALSE L50
+PUSH 0
+GOTO L51
+LABEL L50
+PUSH 1
+LABEL L51
+GOFALSE L49
+LVALUE reseqtwo
+PUSH 99
+:=
+LABEL L49
+RVALUE vala
+RVALUE valc
+-
+GOTRUE L54
+PUSH 0
+GOTO L55
+LABEL L54
+PUSH 1
+LABEL L55
+GOFALSE L53
+LVALUE resnetwo
+PUSH 99
+:=
+LABEL L53
+RVALUE vala
+RVALUE valb
+-
+GOMINUS L60
+PUSH 1
+GOTO L59
+LABEL L60
+PUSH 0
+LABEL L59
+GOFALSE L57
+LVALUE resgethree
+PUSH 99
+:=
+LABEL L57
+RVALUE valb
+RVALUE vala
+-
+GOPLUS L65
+PUSH 1
+GOTO L64
+LABEL L65
+PUSH 0
+LABEL L64
+GOFALSE L62
+LVALUE reslethree
+PUSH 99
+:=
+LABEL L62
+LVALUE restruncate
+RVALUE numseven
+RVALUE numthree
+/
+:=
+HALT
+$ -- END OF EXECUTION CODE AND START OF VAR DEFINITIONS --
+DW vala
+DW valb
+DW valc
+DW resgt
+DW reslt
+DW reseqone
+DW reseqtwo
+DW resneone
+DW resnetwo
+DW resgeone
+DW resgetwo
+DW resgethree
+DW resleone
+DW resletwo
+DW reslethree
+DW tempval
+DW reseqifelsetrue
+DW reseqifelsefalse
+DW numseven
+DW numthree
+DW restruncate
+END
